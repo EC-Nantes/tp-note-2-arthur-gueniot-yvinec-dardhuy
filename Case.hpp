@@ -18,6 +18,6 @@ class Case {
     std::vector<Tortue> getTortue() const;
     void setTortue(std::vector<Tortue> liste_tortues);
     int getNumeroCase() const;
-    int find_number_tortue();
+    int find_number_tortue(Tortue* tortue);
 };
 #endif

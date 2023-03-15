@@ -1,5 +1,15 @@
+# Doxygen
+html/**
+latex/**
+
+# Replit
+.ccls-cache/**
+*replit*
+*.txt
+
 # Prerequisites
 *.d
+main
 
 # Compiled Object files
 *.slo

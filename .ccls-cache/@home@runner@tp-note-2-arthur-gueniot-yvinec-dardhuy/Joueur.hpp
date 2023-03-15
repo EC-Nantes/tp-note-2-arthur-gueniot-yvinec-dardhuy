@@ -29,6 +29,13 @@ public:
   void SetCartes_en_main(std::vector<Carte*>);
 
   /**
+   *  Le plateau pioche la carte et la donne au joueur
+   *  Retourne une exception si le nombre de carte est supérieur au nombre de cartes autorisée
+   *  dans la main
+   */
+  void AjouterUneCarteDansLaMain(Carte *carte);
+
+  /**
    *  Demande au joeuur de renvoyer une des carte de sa main
    *  Cette action supprime la carte de la main Il faut donc faire piocher une
    * carte au joueur ensuite.
@@ -43,13 +50,6 @@ public:
    *  A redéfinir dans chaque sous-classe
    */
   virtual void ConsulterCarteEnMain() = 0;
-
-  /**
-   *  Le plateau pioche la carte et la donne au joueur
-   *  Retourne une exception si le nombre de carte est supérieur au nombre de cartes autorisée
-   *  dans la main
-   */
-  void AjouterUneCarteDansLaMain(Carte *carte);
 
   /** Surcharge de méthode de la classe mère ou librairie standard */
   friend std::ostream& operator<<(std::ostream &o, Joueur &j);

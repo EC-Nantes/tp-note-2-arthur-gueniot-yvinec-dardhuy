@@ -19,7 +19,12 @@ void Case::setTortue(std::vector<Tortue> liste_tortues){
   this->liste_tortues = liste_tortues;
 }
 
-int find_number_tortue(Tortue* tortue){
-  while()
+int Case::find_number_tortue(Tortue* tortue){
+  int index = 0;
+    while ( index < liste_tortues.size() ) {
+        if(liste_tortues(index) == )
+        index++;
+    }
 }
+
 
