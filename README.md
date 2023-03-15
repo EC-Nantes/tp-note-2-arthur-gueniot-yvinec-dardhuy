@@ -5,4 +5,4 @@ Jeu des tortues
 ARTHUR Rémy
 GUENIOT Corentin
 YVINEC Dorine
-LIOGIER D'ARDHUY Cyprien
+LIOGIER DIT D'ARDHUY Cyprien
