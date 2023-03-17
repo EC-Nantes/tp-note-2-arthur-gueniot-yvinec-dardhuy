@@ -8,8 +8,8 @@
 #include <vector>
 
 class Joueur {
-private:
-  Tortue tuile;
+protected:
+  Tortue *tuile;
   std::vector<Carte*> cartes_en_main;
 
 public:
@@ -21,12 +21,12 @@ public:
   /**
   *  Accesseur pour les cartes en main
   */
-  std::vector<Carte*> GetCartes_en_main();
+  std::vector<Carte*> GetCartesEnMain();
 
   /**
   *  Mutateur pour les cartes en main
   */
-  void SetCartes_en_main(std::vector<Carte*>);
+  void SetCartesEnMain(std::vector<Carte*> & cartes);
 
   /**
    *  Le plateau pioche la carte et la donne au joueur
@@ -44,9 +44,7 @@ public:
   virtual Carte *JouerUneCarte() = 0;
 
   /**
-   *  Demande au joueur de renvoyer une des carte de sa main
-   *  Cette action supprime la carte de la main Il faut donc faire piocher une
-   * carte au joueur ensuite.
+   *  Demande au joueur de consulter toutes ces cartes sous affichage console
    *  A redéfinir dans chaque sous-classe
    */
   virtual void ConsulterCarteEnMain() = 0;

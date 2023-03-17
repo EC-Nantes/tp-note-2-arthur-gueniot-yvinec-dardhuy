@@ -1,33 +1,13 @@
-#ifndef _JOUEUR_HPP_
-#define _JOUEUR_HPP_
+#ifndef _JOUEURIA_HPP_
+#define _JOUEURIA_HPP_
 
-#include "Carte.hpp"
-#include "Tortue.hpp"
+#include "Joueur.hpp"
 
-#include <iostream>
-#include <vector>
-
-class JoueurIA {
-private:
-
+class JoueurIA: public virtual Joueur {
 public:
-  /**
-   *  Constructeur
-   */
-  JoueurIA();
-
-  /**
-   *  Demande au joeuur de renvoyer une des carte de sa main
-   *  Cette action supprime la carte de la main Il faut donc faire piocher une
-   * carte au joueur ensuite.
-   *  A redéfinir dans chaque sous-classe
-   */
+  JoueurIA(std::vector<Carte*> cartes, Tortue *tuile);
   Carte *JouerUneCarte();
-
-  void ConsulterCarteEnMain();
-
-  /** Surcharge de méthode de la classe mère ou librairie standard */
-  friend std::ostream& operator<<(std::ostream &o, JoueurIA &j);
+  void ConsulterCarteEnMain() {};
 };
 
 #endif /* _JOUEUR_HPP_ */

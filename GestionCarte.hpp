@@ -11,7 +11,7 @@
 #include <chrono>
 
 class GestionCarte {
-public:
+  public:
     GestionCarte();
 
     // Mélange les cartes dans le paquet
@@ -19,7 +19,7 @@ public:
     // Pioche la première carte du paquet et la renvoie
     Carte* piocher(Carte *ancienne_carte );
     std::vector<Carte*> Distribuer5Cartes();
-private:
+  private:
     std::vector<Carte*> pointeur_cartes;//la pioche
 };
 

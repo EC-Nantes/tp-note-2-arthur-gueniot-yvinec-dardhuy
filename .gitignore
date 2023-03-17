@@ -6,6 +6,7 @@ latex/**
 .ccls-cache/**
 *replit*
 *.txt
+.breakpoints
 
 # Prerequisites
 *.d
