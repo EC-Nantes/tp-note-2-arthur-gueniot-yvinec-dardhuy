@@ -2,9 +2,9 @@
 
 void Plateau::Deroulement_partie(){
   Carte* carte_jouer;
-  j1.ConsulterCarteEnMain();
-  carte_jouer = j1.JouerUneCarte();
-  j1.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
+  // j1.ConsulterCarteEnMain();
+  // carte_jouer = j1.JouerUneCarte();
+  // j1.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
 }
 
 Plateau::Plateau(){

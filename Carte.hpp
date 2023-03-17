@@ -34,6 +34,8 @@ class Carte {
       return m_couleur;
     }
 
+    std::string getCouleurString() const ;
+
   /** Surcharge de méthode de la classe mère ou librairie standard */
   friend std::ostream& operator<<(std::ostream &o, Carte &c);
 

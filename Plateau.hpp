@@ -5,6 +5,9 @@
 #include "Tortue.hpp"
 #include "Joueur.hpp"
 #include "Case.hpp"
+#include "GestionCarte.hpp"
+#include "JoueurHumain.hpp"
+#include "JoueurIA.hpp"
 
 #include <iostream>
 #include <vector>
@@ -12,7 +15,7 @@
 class Plateau {
 private:
   GestionCarte pioche;
-  Joueur j1, j2;
+  // JoueurHumain j1, j2;
   std::vector<Case> liste_cases;
 
 public:

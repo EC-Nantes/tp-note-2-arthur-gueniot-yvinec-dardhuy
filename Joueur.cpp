@@ -4,7 +4,7 @@
 
 Joueur::Joueur(std::vector<Carte*> cartes, Tortue *tuile) {
   if ( cartes.size() != NOMBRE_DE_CARTE_EN_MAIN_MAX ) {
-    throw("Le joueur doit avoir %d cartes pour démarrer", NOMBRE_DE_CARTE_EN_MAIN_MAX);
+    throw("Joueur::Joueur(std::vector<Carte*> cartes, Tortue *tuile) : Le joueur doit avoir 5 cartes pour démarrer");
   }
   this->cartes_en_main = cartes;
   this->tuile = tuile;
@@ -19,17 +19,17 @@ void Joueur::SetCartesEnMain(std::vector<Carte*> & cartes) {
 
 void Joueur::AjouterUneCarteDansLaMain(Carte *carte) {
   if ( this->cartes_en_main.size() >= NOMBRE_DE_CARTE_EN_MAIN_MAX ) {
-    throw("La main du joueur est déja pleine");
+    throw("Joueur::AjouterUneCarteDansLaMain(Carte *carte) : Impossible d'ajouter une carte, La main du joueur est déja pleine");
   }
   this->cartes_en_main.push_back(carte);
 }
 
-std::ostream &operator<<(std::ostream &o, Joueur &j) {
+std::ostream &operator<<(std::ostream &os, Joueur &j) {
   std::cout << "Carte du Joueur " << j.tuile << std::endl;
   int i = 1;
   for (auto uneCarte : j.GetCartesEnMain()) {
-    std::cout << "\t" << i << " - " << uneCarte << std::endl;
+    os << "\t" << i << " - " << *uneCarte << std::endl;
     i++;
   }
-  return o;
+  return os;
 }
