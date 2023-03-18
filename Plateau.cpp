@@ -14,6 +14,7 @@ Plateau::Plateau(){
 bool Plateau::JouerEffetCarteDefausser(Carte cartejouer,Joueur joueur){
   bool etat=false;
   switch(cartejouer.getEffet()){
+    
     case Avancer2 : 
       etat= this->AppliquerEffet(cartejouer.getCouleur(), 2);
       break;
@@ -21,6 +22,24 @@ bool Plateau::JouerEffetCarteDefausser(Carte cartejouer,Joueur joueur){
       if(cartejouer.getCouleur()== Neutre){
         etat= this->AppliquerEffet(this->ChoixCouleur(), 1);
       }
+      else{
+        etat= this->AppliquerEffet(cartejouer.getCouleur(), 1);
+      }
+      break;
+    case Reculer1 : 
+      if(cartejouer.getCouleur()== Neutre){
+        etat= this->AppliquerEffet(this->ChoixCouleur(), -1);
+      }
+      else{
+        etat= this->AppliquerEffet(cartejouer.getCouleur(), -1);
+      }
+      break;
+    case Saute1:
+      // TODO!!!
+      break;
+    case Saute2:
+      // TODO!!!
+      break;
   }
 }
 

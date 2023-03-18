@@ -6,17 +6,20 @@ JoueurHumain::JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile) : Joueur(c
 }
 
 
+/** Le joueur doit choisir une carte à jouer */
 Carte * JoueurHumain::JouerUneCarte() {
-  /** Le joueur doit choisir une carte à jouer */
-  
+  int choix;
   Carte* carte_a_jouer;
-  int it = rand() % 4;
   
-  /** Initialiser une graine aléatoire avec la base de la librairie time.h */
-  srand (time(NULL));
+  std::cout << "Choisssez une carte de votre main (1..5) : ";
+  std::cin >> choix;
 
-  carte_a_jouer = this->cartes_en_main.at(it);
-  this->cartes_en_main.erase(this->cartes_en_main.begin()+it, this->cartes_en_main.begin()+it+1);
+  /* Réajuster la valeur de choix (1..5) => (0..4) */
+  choix -= 1;
+
+  /* Mettre à jour la main du joueur en supprimant la carte de la main */
+  carte_a_jouer = this->cartes_en_main.at(choix);
+  this->cartes_en_main.erase(this->cartes_en_main.begin()+choix, this->cartes_en_main.begin()+choix+1);
   
   /** renvoyer une des cartes aléatoires de la main */
   return carte_a_jouer;
