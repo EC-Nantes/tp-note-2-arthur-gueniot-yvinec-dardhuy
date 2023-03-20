@@ -13,6 +13,7 @@ protected:
   std::vector<Carte*> cartes_en_main;
 
 public:
+  Joueur(){}
   /**
    *  Constructeur
    */

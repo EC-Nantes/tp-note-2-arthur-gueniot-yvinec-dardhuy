@@ -5,6 +5,7 @@
 
 class JoueurHumain: public Joueur {
 public:
+  JoueurHumain(){}
   JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile);
   Carte *JouerUneCarte();
   void ConsulterCarteEnMain();

@@ -15,10 +15,10 @@ std::string Carte::getDescription() const {
         phrase=  "Reculer 1 case";
         break;
     case Saute2:
-        phrase=  "la dernière tortue avance de 2 cases, sil y en a plusieurs empilées le joueur choisit soit de les déplacer toutes soit celle de son choix";
+        phrase=  "Sauter 2 cases : la dernière tortue avance de 2 cases, sil y en a plusieurs empilées le joueur choisit soit de les déplacer toutes soit celle de son choix";
         break;
     case Saute1:
-        phrase=  "la dernière tortue avance de 1 cases, sil y en a plusieurs empilées le joueur choisit soit de les déplacer toutes soit celle de son choix";
+        phrase=  "Sauter 1 case : la dernière tortue avance de 1 cases, sil y en a plusieurs empilées le joueur choisit soit de les déplacer toutes soit celle de son choix";
         break;
     default:
         phrase=  "Effet inconnu";

@@ -8,25 +8,30 @@
 #include "GestionCarte.hpp"
 #include "JoueurHumain.hpp"
 #include "JoueurIA.hpp"
-
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <vector>
 
 class Plateau {
 private:
   GestionCarte pioche;
-  // JoueurHumain j1, j2;
   std::vector<Case> liste_cases;
+  JoueurHumain j1,j2;
+  JoueurIA jIA;
+  bool modeIA;
 
 public:
   
-  Plateau();
-  void Deroulement_partie();
+  Plateau(bool modeIA);
+  bool Deroulement_partie();
+  void AfficherCarteEtTuileJoueur();
   void Initialisation();
-  void JouerEffetCarteDefausser(Effet effet,Joueur joueur);
-  bool AppliquerEffet(Couleur couleurcarte, int deplacement);
-  bool JouerEffetCarteDefausser(Carte cartejouer,Joueur joueur);
+  bool AppliquerEffet(Couleur couleurcarte, int deplacement);//Si on a une couleur de carte spécifique, c'est cette tortue et celle du dessus qui seront bougées
+  bool AppliquerEffet(int deplacement); //Sinon surcharge opérateur, celle-ci sera appelé et viendra sélectionner la tortue en dernière position du jeu.
+  bool JouerEffetCarteDefausser(Carte cartejouer);
   Couleur ChoixCouleur();
+  void Affichage();
 };
 
 #endif /* _Plateau_HPP_ */

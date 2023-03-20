@@ -5,6 +5,7 @@
 
 class JoueurIA: public virtual Joueur {
 public:
+  JoueurIA(){}
   JoueurIA(std::vector<Carte*> cartes, Tortue *tuile);
   Carte *JouerUneCarte();
   void ConsulterCarteEnMain() {};
