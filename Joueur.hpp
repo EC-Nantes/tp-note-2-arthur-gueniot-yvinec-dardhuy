@@ -26,6 +26,9 @@ public:
 
   /**
   *  Mutateur pour les cartes en main
+  *  Les cartes dans la main seront remplacées
+  *
+  * \param cartes Ensembel de carte à placer dans la main du joueur
   */
   void SetCartesEnMain(std::vector<Carte*> & cartes);
 

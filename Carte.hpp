@@ -44,5 +44,4 @@ class Carte {
     Couleur m_couleur;
 };
 
-
 #endif  /* _CARTE_HPP_ */

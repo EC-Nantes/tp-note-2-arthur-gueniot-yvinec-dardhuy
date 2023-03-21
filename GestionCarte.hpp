@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include "Carte.hpp"
-
 #include <vector>
 #include <algorithm>
 #include <random>
@@ -22,6 +21,5 @@ class GestionCarte {
   private:
     std::vector<Carte*> pointeur_cartes;//la pioche
 };
-
 
 #endif /* _GESTIONCARTE_HPP_ */
