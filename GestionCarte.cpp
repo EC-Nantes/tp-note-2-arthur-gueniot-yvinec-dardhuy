@@ -4,7 +4,7 @@ GestionCarte::GestionCarte() {
   // Initialisation du paquet de cartes
   // création des cartes
   Couleur iteration_couleur[]={Rouge,Vert,Jaune,Bleu,Violette,Neutre};
-  for(int it = 0 ; it <5; it++){//parcourir les 5 couleurs avec un iterateur
+  for(int it = 0 ; it <6; it++){//parcourir les 5 couleurs avec un iterateur
     //Couleur cartes créations
     if(iteration_couleur[it]!=Neutre) {
       pointeur_cartes.push_back(new Carte(Effet::Avancer2,iteration_couleur[it]));

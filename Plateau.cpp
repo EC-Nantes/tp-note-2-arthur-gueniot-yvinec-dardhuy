@@ -33,6 +33,7 @@ bool Plateau::Deroulement_partie() {
     this->Affichage();
     std::cout << std::endl << "Au tour de l'IA !" << std::endl;
     carte_jouer = jIA.JouerUneCarte();
+    std::cout << std::endl << "Au tour de l'IA2 !" << std::endl;
     jIA.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
     if (this->JouerEffetCarteDefausser(*carte_jouer))
       return true;
@@ -146,6 +147,11 @@ bool Plateau::AppliquerEffet(Couleur couleurcarte, int deplacement) {
   for (int i = 0; i < liste_cases.size(); i++) {
     tortue = liste_cases[i].find_number_tortue(couleurcarte);
     if (tortue != nullptr) {
+      if(i==0 & deplacement == -1){
+        return false;
+      }
+      if(i==8 & deplacement == 2)
+        deplacement = 1;
       this->liste_cases[i + deplacement].setTortue(
           this->liste_cases[i].get_range_tortue_and_clean(tortue));
       // for(int j=0;
@@ -170,6 +176,11 @@ bool Plateau::AppliquerEffet(int deplacement) {
   bool etat = false;
   for (int i = 0; i < liste_cases.size(); i++) {
     if (liste_cases[i].getTortue().size() != 0) {
+      if(i==0 & deplacement == -1){
+        return false;
+      }
+      if(i==8 & deplacement == 2)
+        deplacement = 1;
       liste_cases[i + deplacement].setTortue(
           liste_cases[i].get_range_tortue_and_clean(
               liste_cases[i].getTortue().front()));
