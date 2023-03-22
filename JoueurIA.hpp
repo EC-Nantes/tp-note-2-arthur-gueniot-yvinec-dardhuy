@@ -18,10 +18,11 @@ public:
   *
   * \param cartes Ensemble des cartes à distribuer au joueur
   * \param tuile Tortue liée au joueur
+  * \param num Numéro du joueur pour identification
   */
   JoueurIA(std::vector<Carte*> cartes, Tortue *tuile, int num);
 
-  void Affichage(){};
+
   /**
   * \brief Le joueur choisis une carte dans sa main aléatoirement
   *
@@ -36,6 +37,7 @@ public:
   * \brief Ne fait rien pour la classe Joueur IA
   */
   void ConsulterCarteEnMain() {};
+  void Affichage(){};
 };
 
 #endif /* _JOUEUR_HPP_ */

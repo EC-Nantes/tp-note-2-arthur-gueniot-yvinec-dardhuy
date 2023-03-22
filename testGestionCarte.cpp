@@ -1,9 +1,10 @@
 #include "Carte.hpp"
 #include "GestionCarte.hpp"
+#include "TestGestionCarte.hpp"
 #include <cassert>
 #include <iostream>
 #include <vector>
-/*
+
 void testCreationGestionCarte() {
   GestionCarte gestionCarte;
   assert(gestionCarte.Distribuer5Cartes().size() == 5);
@@ -29,7 +30,6 @@ int testGestionCarte() {
   testMelanger();
   testPiocher();
 
-  std::cout << "All tests passed!" << std::endl;
+  std::cout << "Test de la classe GestionCarte OK !" << std::endl;
   return 0;
 }
-*/

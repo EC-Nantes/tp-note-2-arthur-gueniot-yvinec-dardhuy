@@ -20,6 +20,7 @@ Carte * JoueurIA::JouerUneCarte() {
   
   this->cartes_en_main.erase(this->cartes_en_main.begin()+it, this->cartes_en_main.begin()+it+1);
   std::cout << *carte_a_jouer<< std::endl;
+  
   /** renvoyer une des cartes aléatoires de la main */
   return carte_a_jouer;
 }

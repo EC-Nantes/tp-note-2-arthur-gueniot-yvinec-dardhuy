@@ -24,7 +24,8 @@ class Case {
     int num;
 
   public:
-    /** Constructeur
+    /** 
+    * Constructeur
     *
     * /param num Numéro de la case sur le plateau
     */

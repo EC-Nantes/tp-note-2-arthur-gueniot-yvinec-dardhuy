@@ -16,4 +16,4 @@ clean:
 	rm -f main main-debug
 
 doxy:
-	doxygen doxy.conf
+	doxygen conf_doxy

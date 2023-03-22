@@ -41,6 +41,8 @@ public:
    *  Le plateau pioche la carte et la donne au joueur
    *  Retourne une exception si le nombre de carte est supérieur au nombre de cartes autorisée
    *  dans la main
+   *
+   * \param carte Carte à ajouter dans la main du joueur
    */
   void AjouterUneCarteDansLaMain(Carte *carte);
 
@@ -57,10 +59,14 @@ public:
    *  A redéfinir dans chaque sous-classe
    */
   virtual void ConsulterCarteEnMain() = 0;
-  virtual void Affichage() = 0;
 
   /** Surcharge de méthode de la classe mère ou librairie standard */
   //friend std::ostream& operator<<(std::ostream &o, Joueur &j);
+
+  /**
+   *  Affichage pour redéfinition dans les sous-classes
+   */
+  virtual void Affichage() = 0;
 };
 
 #endif /* _JOUEUR_HPP_ */

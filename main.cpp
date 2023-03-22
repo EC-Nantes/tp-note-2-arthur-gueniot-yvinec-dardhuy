@@ -3,19 +3,15 @@
 #include "Tortue.hpp"
 #include "Plateau.hpp"
 #include "JoueurHumain.hpp"
+#include "TestGestionCarte.hpp"
 #include <string>
 
 int main(){
-  // std::vector <char> test;
-  // test.push_back('a');
-  // test.push_back('b');
-  // test.push_back('c');
-  // test.push_back('d');
-  // test.erase(test.begin());
-  // for(int i=0;i<4;i++){
-  //   std::cout<<"voici l'it : "<<i<<" voici la valeur vecteur : "<< test[i]<<std::endl;
-  // }
-
+  /**
+  *
+  *  TEST utilisé pour la classe JoueurHumain mais plus opérationnel après merge des travaux de chacun.
+  *
+  */
   /* Test de la création et de l'affichage d'un Joueur */
   // std::vector <Carte*> carte_main = {
   //   new Carte(Avancer2, Rouge), 
@@ -24,7 +20,7 @@ int main(){
   //   new Carte(Saute2, Bleu),
   //   new Carte(Avancer2, Neutre),
   // };
-  // JoueurHumain j1(carte_main, new Tortue(Rouge));
+  // JoueurHumain j1(carte_main, new Tortue(Rouge), 1);
 
   // std::cout << j1 << std::endl;
 
@@ -55,11 +51,19 @@ int main(){
 
   /**
   *
+  *  TEST de la classe GestionCarte
+  *
+  */
+  testGestionCarte();
+  
+  /**
+  *
   *  LANCEMENT DU JEU
   *
   */
+  
 
-  std::cout << "\033[1,34m\033[45mBIENVENUE DE LE JEU DES TORTUES\033[0m" << std::endl;
+  std::cout << "\033[1,34m\033[45mBIENVENUE DANS LE JEU DES TORTUES\033[0m" << std::endl;
   
   /** Choix du nombre de joueur */
   std::string choix_joueur_str;
