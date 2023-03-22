@@ -3,7 +3,7 @@
 
 bool verifierChoixUtilisateur(std::string &choix);
 
-JoueurHumain::JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile) : Joueur(cartes, tuile) {
+JoueurHumain::JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile, int numero) : Joueur(cartes, tuile, numero) {
   std::cout << "Création du joueur : " << this->tuile << std::endl;
   
 }
@@ -33,7 +33,7 @@ Carte * JoueurHumain::JouerUneCarte() {
 
 void JoueurHumain::ConsulterCarteEnMain() {
   /** Montrer au joueur les cartes dans sa main */
-  std::cout << *this << std::endl;
+  this->Affichage();
 }
 
 /** 
@@ -46,4 +46,13 @@ bool verifierChoixUtilisateur(std::string &choix) {
     std::cout << "Entrez une valeur entre 1 et 5" << std::endl;
   }
   return valeurEstAcceptee;
+}
+
+void JoueurHumain::Affichage(){
+  std::cout << "Carte du Joueur " << this->tuile << std::endl;
+  int i = 1;
+  for (auto uneCarte : this->GetCartesEnMain()) {
+    std::cout << "\t" << i << " - " << *uneCarte << std::endl;
+    i++;
+  }
 }

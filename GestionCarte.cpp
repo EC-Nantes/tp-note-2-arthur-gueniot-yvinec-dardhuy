@@ -35,6 +35,9 @@ void GestionCarte::melanger() {
 
 // Pioche la première carte du paquet et la renvoie
 Carte* GestionCarte::piocher(Carte *ancienne_carte ) {
+  if (ancienne_carte == nullptr) {
+    throw("GestionCarte::piocher(Carte *ancienne_carte ) : Pointeur nul");
+  }
   //on ajoute l'ancienne carte à la fin de la pioche
   pointeur_cartes.push_back(ancienne_carte);
   Carte *nouvelle_carte = pointeur_cartes.front();

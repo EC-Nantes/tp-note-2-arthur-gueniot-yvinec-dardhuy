@@ -11,19 +11,24 @@ class Joueur {
 protected:
   Tortue *tuile;
   std::vector<Carte*> cartes_en_main;
+  int numero_de_joueur;
 
 public:
   Joueur(){}
+  Couleur getCouleurTuile(){
+    return tuile->GetCouleur();
+  }
   /**
    *  Constructeur
    */
-  Joueur(std::vector<Carte*> cartes, Tortue *tuile);
+  Joueur(std::vector<Carte*> cartes, Tortue *tuile,int numero);
 
   /**
   *  Accesseur pour les cartes en main
   */
   std::vector<Carte*> GetCartesEnMain();
 
+  int getId(){return numero_de_joueur;}
   /**
   *  Mutateur pour les cartes en main
   *  Les cartes dans la main seront remplacées
@@ -52,9 +57,10 @@ public:
    *  A redéfinir dans chaque sous-classe
    */
   virtual void ConsulterCarteEnMain() = 0;
+  virtual void Affichage() = 0;
 
   /** Surcharge de méthode de la classe mère ou librairie standard */
-  friend std::ostream& operator<<(std::ostream &o, Joueur &j);
+  //friend std::ostream& operator<<(std::ostream &o, Joueur &j);
 };
 
 #endif /* _JOUEUR_HPP_ */

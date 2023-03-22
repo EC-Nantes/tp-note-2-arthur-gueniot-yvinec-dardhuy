@@ -18,7 +18,9 @@
       std::cout<< "\033[33m"<<"o"<<"\033[0m";
       break;
      default:
-      std::cout<< "neutral";
+      throw("ostream& operator<<(std::ostream &o, Tortue* tortue) : Aucune tortue de la couleur demandée");
+      break;
+     
    }
    return o;
  }

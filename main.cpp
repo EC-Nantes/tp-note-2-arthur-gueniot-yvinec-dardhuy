@@ -78,7 +78,7 @@ int main(){
   std::string choix_IA_str;
   do {
     valeurEstAcceptee = true;
-    std::cout<<"Combien d'IA voulez vous ( 0 à " << std::stoi(choix_joueur_str) - 1 << " ?  ";
+    std::cout<<"Combien d'IA voulez vous ( 0 à " << std::stoi(choix_joueur_str) - 1 << ") ?  ";
     std::cin>>choix_IA_str;
     if ( (choix_IA_str != "1") && (choix_IA_str != "2") && (choix_IA_str != "3") && (choix_IA_str != "4") ) {
         if ( (std::stoi(choix_joueur_str) - std::stoi(choix_IA_str)) < 0)
@@ -86,25 +86,12 @@ int main(){
         std::cout << "Entrez un nombre d'IA correct 0 à " << std::stoi(choix_joueur_str) - 1 << std::endl;
     }
   } while ( valeurEstAcceptee == false);
-  
-  /** Choisir son mode de jeu */
-  std::string choix_mode_str;
-  do {
-    valeurEstAcceptee = true;
-    std::cout<<"Quel mode de jeu ? \n\t0-Joueur Humain vs Joueur Humain \n\t ou \n\t1- Joueur Humain vs IA ? \n\tIndiquez le numero du mode de jeu : ";
-    std::cin>>choix_mode_str;
-    if ( (choix_mode_str != "0") && (choix_mode_str != "1") ) {
-        valeurEstAcceptee = false;
-        std::cout << "Entrez le mode 0 ou 1" << std::endl;
-    }
-  } while ( valeurEstAcceptee == false);
 
   /** Créer le plateau de jeu */
-  Plateau jeu(std::stoi(choix_mode_str));
+  std::cout <<  "Nombre de joueur : " << choix_joueur_str << "\tNombre d'IA : " << choix_IA_str << std::endl;
+  Plateau jeu(std::stoi(choix_IA_str),std::stoi(choix_joueur_str)-std::stoi(choix_IA_str));
   jeu.AfficherCarteEtTuileJoueur();
-  do{
-      jeu.Affichage();
-  }while(!jeu.Deroulement_partie());
+  do{ }while(!jeu.Deroulement_partie());
   
   return 0;
 }

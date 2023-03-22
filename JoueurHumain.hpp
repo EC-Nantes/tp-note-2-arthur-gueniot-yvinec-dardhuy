@@ -6,9 +6,10 @@
 class JoueurHumain: public Joueur {
 public:
   JoueurHumain(){}
-  JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile);
+  JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile, int numero);
   Carte *JouerUneCarte();
   void ConsulterCarteEnMain();
+  void Affichage();
 };
 
 #endif /* _JOUEURHUMAIN_HPP_ */

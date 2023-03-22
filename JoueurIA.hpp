@@ -19,8 +19,9 @@ public:
   * \param cartes Ensemble des cartes à distribuer au joueur
   * \param tuile Tortue liée au joueur
   */
-  JoueurIA(std::vector<Carte*> cartes, Tortue *tuile);
+  JoueurIA(std::vector<Carte*> cartes, Tortue *tuile, int num);
 
+  void Affichage(){};
   /**
   * \brief Le joueur choisis une carte dans sa main aléatoirement
   *

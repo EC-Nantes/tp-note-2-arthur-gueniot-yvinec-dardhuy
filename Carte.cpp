@@ -22,6 +22,7 @@ std::string Carte::getDescription() const {
         break;
     default:
         phrase=  "Effet inconnu";
+        throw("string Carte::getDescription() : Pas de description");
         break;
   }
   return phrase;

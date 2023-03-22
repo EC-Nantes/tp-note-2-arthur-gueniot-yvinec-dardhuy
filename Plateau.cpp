@@ -1,46 +1,52 @@
 #include "Plateau.hpp"
 
+
 void Plateau::AfficherCarteEtTuileJoueur() {
-  std::cout << j1 << std::endl;
-  if (this->modeIA == false) {
-    std::cout << j2 << std::endl;
-  }
+  for(auto &it: liste_joueur)//On parcourt chaque joueur de la liste et on affiche ses informations
+    it->Affichage();
 }
 
 bool Plateau::Deroulement_partie() {
+ 
   Carte *carte_jouer;
-  if (this->modeIA == false) {
-    std::cout << std::endl << "Au tour du Joueur 1 !" << std::endl;
-    j1.ConsulterCarteEnMain();
-    carte_jouer = j1.JouerUneCarte();
-    j1.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
-    if (this->JouerEffetCarteDefausser(*carte_jouer))
-      return true;
-    this->Affichage();
-    std::cout << std::endl << "Au tour du Joueur 2 !" << std::endl;
-    j2.ConsulterCarteEnMain();
-    carte_jouer = j2.JouerUneCarte();
-    j2.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
-    if (this->JouerEffetCarteDefausser(*carte_jouer))
-      return true;
-  } else {
-    std::cout << std::endl << "Au tour du Joueur 1 !" << std::endl;
-    j1.ConsulterCarteEnMain();
-    carte_jouer = j1.JouerUneCarte();
-    j1.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
-    if (this->JouerEffetCarteDefausser(*carte_jouer))
-      return true;
-    this->Affichage();
-    std::cout << std::endl << "Au tour de l'IA !" << std::endl;
-    carte_jouer = jIA.JouerUneCarte();
-    std::cout << std::endl << "Au tour de l'IA2 !" << std::endl;
-    jIA.AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
-    if (this->JouerEffetCarteDefausser(*carte_jouer))
-      return true;
+  int compteurJ=1;
+  for(auto &it : liste_joueur){//Pour chaque joueur
+    this->Affichage();//affichage
+    std::cout << std::endl << "Au tour du Joueur " <<compteurJ<< std::endl;
+    it->ConsulterCarteEnMain();
+    carte_jouer = it->JouerUneCarte();
+    try {
+      it->AjouterUneCarteDansLaMain(pioche.piocher(carte_jouer));
+    
+      if (this->JouerEffetCarteDefausser(*carte_jouer,it)){//si on recupère un boolen true alors la case 10 a été atteinte, on vient donc regarder qui est dessus ou aux alentours avec la méthode QuiAGagner
+        this->Affichage();
+        this->QuiAGagner();
+        return true;
+      }
+    } catch (std::string const &erreur) {
+      std::cerr << erreur << std::endl << std::endl;
+    }
+    compteurJ++;
   }
   return false;
 }
 
+bool Plateau::QuiAGagner(){
+   for(auto it= liste_cases.rbegin(); it != liste_cases.rend(); it++){//on parcourt la boucle à l'envers, on démarre de la fin, donc des tortues à supprimer
+     if( it->getTortue().size() != 0 ){//si il y a des tortues sur la case alors
+        for(auto &it_tortue : it->getTortue()){//on parcourt les tortues de la case it
+          for(auto &it_joueur : liste_joueur){//puis pour chaque tortue on compare les tuiles de couleurs des joueurs
+            
+            if(it_tortue->GetCouleur()==it_joueur->getCouleurTuile()){//si il y a la meme couleur alors
+              std::cout<<"le joueur "<< it_joueur->getId()<<" gagne !"<<std::endl;
+              return true;
+            }
+          }          
+        }
+     }
+   }
+  return false;
+}
 void Plateau::Affichage() {
   for (int j = 4; j >= 0; j--) {
     for (int i = 0; i < liste_cases.size(); i++) {
@@ -55,49 +61,63 @@ void Plateau::Affichage() {
   std::cout << " _  _  _  _  _  _  _  _  _  _ " << std::endl;
 }
 
-Plateau::Plateau(bool modeIA) {
+Plateau::Plateau(int choix_IA_str, int choix_joueur_str){
   srand((unsigned int)time(0));
-  int numeroTortueJ1, numeroTortueJ2;
-  this->modeIA = modeIA;
   GestionCarte piochecreation;
+  int i;
+  int id_joueur =1;
   this->pioche = piochecreation;
-  for (int i = 0; i < 10; i++) {
+  //Initialie les cases du plateau
+  for (i = 0; i < 10; i++) {
     this->liste_cases.push_back(Case(i));
   }
-
-  numeroTortueJ1 = rand() % 4;
-  j1 = JoueurHumain(pioche.Distribuer5Cartes(),
-                    liste_cases[0].getTortue()[numeroTortueJ1]);
-  do {
-    numeroTortueJ2 = rand() % 4;
-  } while (numeroTortueJ1 == numeroTortueJ2);
-
-  if (modeIA == false) {
-    j2 = JoueurHumain(pioche.Distribuer5Cartes(),
-                      liste_cases[0].getTortue()[numeroTortueJ2]);
-  } else {
-    jIA = JoueurIA(pioche.Distribuer5Cartes(),
-                   liste_cases[0].getTortue()[numeroTortueJ2]);
+  //initialise les joueurs humains en les ajoutant à la liste de joueurs du plateau
+  for( i= 0; i<choix_joueur_str;i++){
+    liste_joueur.push_back(new JoueurHumain(pioche.Distribuer5Cartes(),
+                      liste_cases[0].getTortue()[i],id_joueur) );
+    id_joueur++;
   }
+  //initialise les joueurs IA en les ajoutant à la liste de joueurs du plateau
+  for(int j =0; j<choix_IA_str;j++){
+    liste_joueur.push_back(new JoueurIA(pioche.Distribuer5Cartes(),
+                      liste_cases[0].getTortue()[i+j], id_joueur));
+    id_joueur++;
+    }
 }
 
-bool Plateau::JouerEffetCarteDefausser(Carte cartejouer) {
+
+bool Plateau::JouerEffetCarteDefausser(Carte cartejouer,Joueur* joueur) {
+  srand((unsigned int)time(0));
+  const Couleur tab_couleur[]= {Rouge,Bleu,Jaune,Vert,Violette};
+  
   bool etat = false;
+  //Pour chaque effet
   switch (cartejouer.getEffet()) {
 
   case Avancer2:
     etat = this->AppliquerEffet(cartejouer.getCouleur(), 2);
     break;
+    
   case Avancer1:
-    if (cartejouer.getCouleur() == Neutre) {
-      etat = this->AppliquerEffet(this->ChoixCouleur(), 1);
+    if (cartejouer.getCouleur() == Neutre) { //si carte neutre
+      std::string nom_classe = typeid(*joueur).name();
+      if(nom_classe.find("JoueurIA") != std::string::npos ) //Si c'est un joueur de type IA
+        etat = this->AppliquerEffet(tab_couleur[rand()%4 ], 1);
+      else{
+        etat = this->AppliquerEffet(this->ChoixCouleur(), 1);
+      }
     } else {
       etat = this->AppliquerEffet(cartejouer.getCouleur(), 1);
     }
     break;
   case Reculer1:
     if (cartejouer.getCouleur() == Neutre) {
-      etat = this->AppliquerEffet(this->ChoixCouleur(), -1);
+       std::string nom_classe = typeid(*joueur).name();
+      if(nom_classe.find("JoueurIA") != std::string::npos )
+        etat = this->AppliquerEffet(tab_couleur[rand()%4 ], 1);
+      else{
+        etat = this->AppliquerEffet(this->ChoixCouleur(), 1);
+      }
     } else {
       etat = this->AppliquerEffet(cartejouer.getCouleur(), -1);
     }
@@ -108,37 +128,44 @@ bool Plateau::JouerEffetCarteDefausser(Carte cartejouer) {
   case Saute2:
     etat = this->AppliquerEffet(2);
     break;
+  default:
+    throw("bool Plateau::JouerEffetCarteDefausser(Carte cartejouer) : Effet inconnu");
+    break;
   }
   return etat;
 }
 
 Couleur Plateau::ChoixCouleur() {
   int choix = 0;
+  Couleur couleur;
   do {
     std::cout << "Joueur, la carte tire est de couleur neutre, choisis donc "
                  "une couleur parmi le 1-Rouge, 2-Jaune, 3-Vert, 4-Violet, "
                  "5-Bleu de tortue a faire bouger en indiquant le numero : ";
     std::cin >> choix;
   } while (choix < 0 || choix > 5);
+  
   switch (choix) {
   case 1:
-    return Rouge;
+    couleur = Rouge;
     break;
   case 2:
-    return Jaune;
+    couleur = Jaune;
     break;
   case 3:
-    return Vert;
+    couleur = Vert;
     break;
   case 4:
-    return Violette;
+    couleur = Violette;
     break;
   case 5:
-    return Bleu;
+    couleur = Bleu;
     break;
   default:
-    return Rouge;
+    throw("Couleur Plateau::ChoixCouleur() : Couleur inconnue");
+    break;
   }
+  return couleur;
 }
 
 bool Plateau::AppliquerEffet(Couleur couleurcarte, int deplacement) {
@@ -147,23 +174,18 @@ bool Plateau::AppliquerEffet(Couleur couleurcarte, int deplacement) {
   for (int i = 0; i < liste_cases.size(); i++) {
     tortue = liste_cases[i].find_number_tortue(couleurcarte);
     if (tortue != nullptr) {
-      if(i==0 & deplacement == -1){
+      if(i==0 & deplacement == -1){ //si le joueur tente de reculer en dehors du plateau
         return false;
       }
-      if(i==8 & deplacement == 2)
+      if(i==8 & deplacement == 2) //si le joueur tente de sortir du plateau
         deplacement = 1;
       this->liste_cases[i + deplacement].setTortue(
           this->liste_cases[i].get_range_tortue_and_clean(tortue));
-      // for(int j=0;
-      // j<liste_cases[i].get_range_tortue_and_clean(tortue).size(); j++){
-      //   std::cout<<liste_cases[i].get_range_tortue_and_clean(tortue)[j];
-      // }
       etat = true;
     }
     /** Vérifier si il y a une tortue gagnante */
     if (liste_cases[9].getTortue().size() != 0) {
-      std::cout << "La tortue " << liste_cases[9].getTortue().front()
-                << " gagne !!!" << std::endl;
+      this->Affichage();
       return true;
     }
     if (etat == true)
@@ -188,8 +210,6 @@ bool Plateau::AppliquerEffet(int deplacement) {
     }
     if (liste_cases[9].getTortue().size() != 0) {
       this->Affichage();
-      std::cout << "La tortue " << liste_cases[9].getTortue().front()
-                << " gagne !!!" << std::endl;
       return true;
     }
     if (etat == true)
