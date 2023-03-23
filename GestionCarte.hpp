@@ -32,16 +32,16 @@ class GestionCarte {
     /**
     *  Piocher une carte et remettre une carte jouée dans la pioche
     *
-    *  /param ancienne_carte Carte déja jouée à remettre sous la pioche
+    *  @param ancienne_carte Carte déja jouée à remettre sous la pioche
     *  
-    *  /return La carte piochée
+    *  @return La carte piochée
     */
     Carte* piocher(Carte *ancienne_carte );
 
     /**
     *  Piocher 5 cartes pour le début de jeu. Ces cartes seront ensuites données à un joueur
     *
-    *  /return Un vecteur de 5 cartes
+    *  @return Un vecteur de 5 cartes
     */
     std::vector<Carte*> Distribuer5Cartes();
 };

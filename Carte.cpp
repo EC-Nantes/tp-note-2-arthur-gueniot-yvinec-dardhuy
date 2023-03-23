@@ -59,6 +59,10 @@ std::string Carte::getCouleurString() const {
 
 
 std::ostream &operator<<(std::ostream &os, Carte &c) {
-  os << c.getCouleurString() << " - " << c.getDescription();
+  try {
+    os << c.getCouleurString() << " - " << c.getDescription();
+  } catch (std::string const &erreur) {
+    std::cerr << erreur << << std::endl;
+  }
   return os;
 }

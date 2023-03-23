@@ -19,16 +19,16 @@ class Tortue {
     Tortue();
     /** 
     *  Constructeur
-    * /param couleur Couleur de la tortue à enregistrer
+    * @param couleur Couleur de la tortue à enregistrer
     */
     Tortue(Couleur couleur) { this->couleur_tortue = couleur;};
 
     /**
     *  Redéfinition de l'opérateur de condition d'égalité, pour comparer la couelur des tortues directement
     *
-    * /param other Tortue à comparer avce l'objet 
+    * @param other Tortue à comparer avce l'objet 
     *
-    * /return Retourne "vrai" si la couleur est identique, sinon "faux"
+    * @return Retourne "vrai" si la couleur est identique, sinon "faux"
     */
     bool operator==( Tortue& other) const {
       bool state=false;
@@ -44,14 +44,14 @@ class Tortue {
     /**
     * Accesseur de la couleur de la tortue
     *
-    * /return Retourne la couleur de la tortue
+    * @return Retourne la couleur de la tortue
     */
     Couleur GetCouleur(){return this->couleur_tortue; }
 
     /**
     * Surcharge de l'opérateur d'affichage pour la classe, affiche la couleur l'image de la tortue avec la bonne couleur
     *
-    * /return Retourne le flux de donnée
+    * @return Retourne le flux de donnée
     */
     friend std::ostream& operator<<(std::ostream &o, Tortue* tortue);
 };

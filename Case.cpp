@@ -37,9 +37,14 @@ Tortue* Case::find_number_tortue(Couleur couleur_tortue){
 
 std::vector<Tortue*> Case::get_range_tortue_and_clean(Tortue* tortueCible){
   bool inRange=false;
+
+  if (tortueCible == nullptr) {
+    throw("vector<Tortue*> Case::get_range_tortue_and_clean(Tortue* tortueCible) : Pointeur nul");
+  }
+  
   std::vector<Tortue*> liste_tortue_deplacement;
     for(auto it= liste_tortues.begin(); it<liste_tortues.end();it++){
-      //it est une pointeur qui pointe sur un pointeur de la liste_tortue d'où la nécessité de mettre ** pour accéder à la valeur tortue : **it == it->pointeur_tortue->objet_tortue
+      //it est un pointeur qui pointe sur un pointeur de la liste_tortue d'où la nécessité de mettre ** pour accéder à la valeur tortue : **it == it->pointeur_tortue->objet_tortue
       if( (**it == *tortueCible) || (inRange == true) ){//une fois la tortue trouvée avec it==tortuecible, on active la variable inRange en true afin que les futurs tortues (qui sont au dessus de celle trouvée) soit ajouté aussi a la liste-tortue_deplacement
         inRange = true;
         liste_tortue_deplacement.push_back(*it);  

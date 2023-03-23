@@ -28,12 +28,16 @@ public:
   */
   std::vector<Carte*> GetCartesEnMain();
 
+  /**
+  *  Accesseur au numéro de joueur
+  */
   int getId(){return numero_de_joueur;}
+
   /**
   *  Mutateur pour les cartes en main
   *  Les cartes dans la main seront remplacées
   *
-  * \param cartes Ensembel de carte à placer dans la main du joueur
+  * @param cartes Ensembel de carte à placer dans la main du joueur
   */
   void SetCartesEnMain(std::vector<Carte*> & cartes);
 
@@ -42,7 +46,7 @@ public:
    *  Retourne une exception si le nombre de carte est supérieur au nombre de cartes autorisée
    *  dans la main
    *
-   * \param carte Carte à ajouter dans la main du joueur
+   * @param carte Carte à ajouter dans la main du joueur
    */
   void AjouterUneCarteDansLaMain(Carte *carte);
 

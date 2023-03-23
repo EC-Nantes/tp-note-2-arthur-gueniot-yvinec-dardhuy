@@ -22,7 +22,7 @@ private:
 public:
 //constructeur de la classe plateau  
   Plateau (int choix_IA_str, int choix_joueur_str); 
-bool Deroulement_partie();// partie finie ou non 
+  bool Deroulement_partie();// partie finie ou non 
   void AfficherCarteEtTuileJoueur();
   bool QuiAGagner();//regarde la tortue gagnante
   bool AppliquerEffet(Couleur couleurcarte, int deplacement);//Si on a une couleur de carte spécifique, c'est cette tortue et celle du dessus qui seront bougées

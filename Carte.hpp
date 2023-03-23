@@ -31,15 +31,15 @@ class Carte {
     /**
     * Constructeur défini avec les paramètre initiaux
     *
-    * /param effet Effet qui sera réalisé par la carte si elle est jouée
-    * /param Couleur Couleur que la carte aura
+    * @param effet Effet qui sera réalisé par la carte si elle est jouée
+    * @param Couleur Couleur que la carte aura
     */
     Carte(Effet effet, Couleur couleur) : m_effet(effet), m_couleur(couleur) {}
 
     /**
     * Accesseur à l'attribut d'effet de la carte
     *
-    * /return Retour l'effet de la carte (avancer, reculer...)
+    * @return Retour l'effet de la carte (avancer, reculer...)
     */
     Effet getEffet() const {
       return m_effet;
@@ -48,14 +48,14 @@ class Carte {
     /**
     * Renvoyer l'information de l'effet de la carte
     *
-    * /return Retourne une chaine de caractère décrivant l'action de la carte
+    * @return Retourne une chaine de caractère décrivant l'action de la carte
     */
     std::string getDescription() const;
 
     /**
     * Accesseur à l'attribut couleur de la carte
     *
-    * /return Retourne la couleur de la carte
+    * @return Retourne la couleur de la carte
     */
     Couleur getCouleur() const {
       return m_couleur;
@@ -64,7 +64,7 @@ class Carte {
     /**
     * Convertir et renvoyer la couleur de la carte au format texte
     *
-    * /return Retourne la couleur de la carte au format string
+    * @return Retourne la couleur de la carte au format string
     */
     std::string getCouleurString() const ;
 

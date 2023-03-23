@@ -15,6 +15,7 @@ Carte * JoueurHumain::JouerUneCarte() {
   std::string choix_str;
   Carte* carte_a_jouer;
 
+  /* Demander la carte que le joueur souhaite jouer. Vérifier que la valeur renseignée soit cohérente */
   do {
     std::cout << "Choisssez une carte de votre main (1..5) : ";
     std::cin >> choix_str;
