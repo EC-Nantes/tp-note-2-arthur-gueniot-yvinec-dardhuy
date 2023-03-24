@@ -62,7 +62,7 @@ std::ostream &operator<<(std::ostream &os, Carte &c) {
   try {
     os << c.getCouleurString() << " - " << c.getDescription();
   } catch (std::string const &erreur) {
-    std::cerr << erreur << << std::endl;
+    std::cerr << erreur << std::endl;
   }
   return os;
 }

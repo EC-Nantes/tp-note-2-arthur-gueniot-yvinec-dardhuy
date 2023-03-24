@@ -3,7 +3,7 @@
 #include <time.h>       /* time */
 
 JoueurIA::JoueurIA(std::vector<Carte*> cartes, Tortue *tuile, int num) : Joueur(cartes, tuile, num) {
-  std::cout << "Création du joueur IA : " << this->tuile << std::endl;  
+  std::cout << "Création du joueur IA " << this->numero_de_joueur << " : " << this->tuile << std::endl;  
 }
 
 

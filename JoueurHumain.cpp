@@ -4,7 +4,7 @@
 bool verifierChoixUtilisateur(std::string &choix);
 
 JoueurHumain::JoueurHumain(std::vector<Carte*> cartes, Tortue *tuile, int numero) : Joueur(cartes, tuile, numero) {
-  std::cout << "Création du joueur : " << this->tuile << std::endl;
+  std::cout << "Création du joueur " << this->numero_de_joueur << " : " << this->tuile << std::endl;
   
 }
 

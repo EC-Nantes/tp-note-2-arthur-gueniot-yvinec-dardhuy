@@ -36,21 +36,16 @@ bool Plateau::Deroulement_partie() {
 }
 
 bool Plateau::QuiAGagner() {
-  for (auto it = liste_cases.rbegin(); it != liste_cases.rend();
-       it++) { // on parcourt la boucle à l'envers, on démarre de la fin, donc
-               // des tortues à supprimer
+  // on parcourt la boucle à l'envers, on démarre de la fin, donc des tortues à supprimer
+  for (auto it = liste_cases.rbegin(); it != liste_cases.rend(); it++) {
     if (it->getTortue().size() != 0) { // si il y a des tortues sur la case
-                                       // alors
-      for (auto &it_tortue :
-           it->getTortue()) { // on parcourt les tortues de la case it
-        for (auto &it_joueur :
-             liste_joueur) { // puis pour chaque tortue on compare les tuiles de
-                             // couleurs des joueurs
-
-          if (it_tortue->GetCouleur() ==
-              it_joueur->getCouleurTuile()) { // si il y a la meme couleur alors
-            std::cout << "le joueur " << it_joueur->getId() << " gagne !"
-                      << std::endl;
+      // alorson parcourt les tortues de la case it
+      for (auto &it_tortue :it->getTortue()) {
+        // puis pour chaque tortue on compare les tuiles de couleurs des joueurs
+        for (auto &it_joueur : liste_joueur) { 
+          if (it_tortue->GetCouleur() == it_joueur->getCouleurTuile()) {
+            // si il y a la meme couleur alors
+            std::cout << "le joueur " << it_joueur->getId() << " gagne !"  << std::endl;
             return true;
           }
         }
@@ -59,6 +54,7 @@ bool Plateau::QuiAGagner() {
   }
   return false;
 }
+
 void Plateau::Affichage() {
   for (int j = 4; j >= 0; j--) {
     for (int i = 0; i < liste_cases.size(); i++) {
@@ -83,8 +79,7 @@ Plateau::Plateau(int choix_IA_str, int choix_joueur_str) {
   for (i = 0; i < 10; i++) {
     this->liste_cases.push_back(Case(i));
   }
-  // initialise les joueurs humains en les ajoutant à la liste de joueurs du
-  // plateau
+  // initialise les joueurs humains en les ajoutant à la liste de joueurs du plateau
   for (i = 0; i < choix_joueur_str; i++) {
     liste_joueur.push_back(new JoueurHumain(
         pioche.Distribuer5Cartes(), liste_cases[0].getTortue()[i], id_joueur));
@@ -114,8 +109,7 @@ bool Plateau::JouerEffetCarteDefausser(Carte cartejouer, Joueur *joueur) {
   case Avancer1:
     if (cartejouer.getCouleur() == Neutre) { // si carte neutre
       std::string nom_classe = typeid(*joueur).name();
-      if (nom_classe.find("JoueurIA") !=
-          std::string::npos) // Si c'est un joueur de type IA
+      if (nom_classe.find("JoueurIA") != std::string::npos) // Si c'est un joueur de type IA
         etat = this->AppliquerEffet(tab_couleur[rand() % 4], 1);
       else {
         etat = this->AppliquerEffet(this->ChoixCouleur(), 1);
@@ -128,9 +122,9 @@ bool Plateau::JouerEffetCarteDefausser(Carte cartejouer, Joueur *joueur) {
     if (cartejouer.getCouleur() == Neutre) {
       std::string nom_classe = typeid(*joueur).name();
       if (nom_classe.find("JoueurIA") != std::string::npos)
-        etat = this->AppliquerEffet(tab_couleur[rand() % 4], 1);
+        etat = this->AppliquerEffet(tab_couleur[rand() % 4], -1);
       else {
-        etat = this->AppliquerEffet(this->ChoixCouleur(), 1);
+        etat = this->AppliquerEffet(this->ChoixCouleur(), -1);
       }
     } else {
       etat = this->AppliquerEffet(cartejouer.getCouleur(), -1);
@@ -189,12 +183,12 @@ bool Plateau::AppliquerEffet(Couleur couleurcarte, int deplacement) {
   for (int i = 0; i < liste_cases.size(); i++) {
     tortue = liste_cases[i].find_number_tortue(couleurcarte);
     if (tortue != nullptr) {
-      if (i == 0 &
-          deplacement ==
-              -1) { // si le joueur tente de reculer en dehors du plateau
+      if (i == 0 & deplacement == -1) { 
+        // si le joueur tente de reculer en dehors du plateau
         return false;
       }
-      if (i == 8 & deplacement == 2){ // si le joueur tente de sortir du plateau
+      if (i == 8 & deplacement == 2){ 
+        // si le joueur tente de sortir du plateau
         deplacement = 1;
       }
       try {
